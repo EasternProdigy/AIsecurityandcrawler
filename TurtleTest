@@ -1,0 +1,78 @@
+import turtle
+turtle.speed(0)
+eitherIn = str(input("Enter the word \"numbers\" or the word \"colors\": "))
+#Takes the user input
+while not(eitherIn == "numbers" or eitherIn == "colors"):
+	print("Please input the requested values")
+	eitherIn = str(input("Enter the word \"numbers\" or the word \"colors\": "))
+#One of the most important parts of the code makes sure the input is valid
+if eitherIn == "numbers":
+	print("Have you ever heard of triangular numbers?\nThe nth triangular number is found by adding the first n natural numbers.\nHere are the first triangular numbers")
+	numTri = 0
+	for i in range(1,11):
+		numTri += i
+		print(" " * (i-1), end = " ")
+		print(numTri)
+else:
+	pass
+#Else pass is used to make the code look better and is easier for the reader to follow
+if eitherIn == "colors":
+	#The information on the program is given to the user here if they chose colors
+	print("When you enter the number of sides of a polygon,\nI will use the polygon to draw a spiral")
+	polySide = int(input("Enter a number of sides between 3 and 6 (inclusive): "))
+	#The input validation loop starts here and makes sure the user inputs the right values
+	while not(polySide == 3 or polySide == 4 or polySide == 5 or polySide == 6):
+			print("You must try again because you did not enter a number that was between 3 and 6 (inclusive)")
+			#Continues to ask the user for inputs if its not the correct value
+			polySide = int(input("Enter a number of sides between 3 and 6 (inclusive): "))
+	if polySide == 3:
+		#Starts the loop that prints a triangle
+		turtle.bgcolor("black")
+		colors = ["yellow","red","blue"]
+		for x in range(300):
+			#starts the actual drawing
+			turtle.pencolor(colors[x%3])
+			turtle.forward(x)
+			turtle.left(121)
+			#The angle measure was found my taking the concave angle + 181
+		#important to hide turtle so the drawing looks cleaner
+		turtle.hideturtle()
+	else:
+		pass
+	if polySide == 4:
+		#a color is added and instead a square spiral is printed
+		turtle.bgcolor("black")
+		colors = ["yellow","red","blue","green"]
+		for x in range(300):
+			#Uses the colors
+			turtle.pencolor(colors[x%4])
+			turtle.forward(x)
+			turtle.left(91)
+		turtle.hideturtle()
+	else:
+		pass
+	if polySide == 5:
+		#same thing as the last with one more side and color
+		turtle.bgcolor("black")
+		colors = ["yellow","red","blue","green","white"]
+		for x in range(300):
+			turtle.pencolor(colors[x%5])
+			turtle.forward(x)
+			turtle.left(289)
+		turtle.hideturtle()
+	else:
+		pass
+	if polySide == 6:
+		#Last inclusive loop with a hexagon and six colors
+		turtle.bgcolor("black")
+		colors = ["yellow","red","blue","green","white","magenta"]
+		for x in range(300):
+			turtle.pencolor(colors[x%6])
+			turtle.forward(x)
+			turtle.left(301)
+		turtle.hideturtle()
+	else:
+		pass
+else:
+	pass
+	#pass used to preserve the aesthetics of the program  (very important for a good grade but if it isnt then i shall take it out)
