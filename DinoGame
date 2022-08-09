@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+		<script src="script.js" type="module"></script>
+</head>
+<body>
+    <div class = "world" data-world>
+        <div class="score">0</div>
+        <div class="start-screen">Press Any Key To Start</div>
+        <img src="imgs/ground.png" alt="" class="ground">
+        <img src="imgs/ground.png" alt="" class="ground">
+        <img src="imgs/dino-stationary.png" alt="" class="dino">
+    </div>
+</body>
+</html>
+
+const WORLD_WIDTH = 100
+const WORLD_HEIGHT = 30
+
+const worldElem = document.querrySelector("[data-world]")
+
+setPixelToWorldScale()
+window.addEventListener("resize", setPixelToWorldSize)
+
+function setPixelToWorldScale() {
+	let worldToPixelScale
+	if (window.innerWidth / window.innerHeight < WORLD_WIDTH / WORLD_HEIGHT){
+		worldPixelScale = window.innerWidth / WORLD_WIDTH
+	} else {
+		worldToPixelScale = window.innerHeight / WORLD_HEIGHT
+	}
+
+	worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
+	worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.world {
+    overflow: hidden;
+    position: relative;
+}
+
+.score {
+	position: absolue;
+	font-size: 3vmin;
+	right: 1vmin;
+	top: 1vmin;
+}
+
+.start-screen {
+	position: absolute;
+	font-size: 5vmin;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.hide {
+	display: none;
+}
+
+.ground {
+	--left: 0;
+	position: absolute;
+	width: 300%;
+	bottom: 0;
+	left: calc(var(--left) * 1%);
+	
+}
+
+.dino {
+	--bottom: 0;
+	position: absolute;
+	left: 1%;
+	height: 30%;
+	bottom: calc(var(--bottom) * 1%);
+}
+
+.cactus {
+	--left: 0;
+	position: absolute;
+	left: calc(var(--left) * 1%);
+	height: 30%;
+	bottom: 0;
+}
