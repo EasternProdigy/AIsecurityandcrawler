@@ -1,0 +1,30 @@
+import requests
+from bs4 import BeautifulSoup
+
+wiki = "/wiki/"
+def scrapeWikiArticle(url):
+    response = requests.get(url=url,)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    #scrapeWikiArticle("https://en.wikipedia.org" + linkToScrape['href'])
+    return soup.find(id="bodyContent").find_all("a")
+
+def recursiveFind(url, target):
+    links = scrapeWikiArticle(url)
+    for link in links:
+        if (link == target):
+            break
+        else:
+            recursiveFind(link, target)
+        print("sucess")
+
+def main():
+    start = input("Article to Start With: ")
+    end = input("Target Article; ")
+    recursiveFind(start, end)
+
+"""url = input("test: ")
+multLinks = BeautifulSoup(requests.get(url=url,).content, 'html.parser').find_all("a")
+link = multLinks[1]
+print(link)"""
+main()
+#scrapeWikiArticle("https://en.wikipedia.org/wiki/Web_scraping
