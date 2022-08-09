@@ -1,0 +1,44 @@
+from datetime import date
+import requests
+from stocksymbol import StockSymbol
+
+ss = StockSymbol('95ce8c5a-ba44-47ec-b43b-e070894f6326')
+symbol_list_us = ss.get_symbol_list(index="NDX",  symbols_only=True)
+
+
+def Company_Value(CN):
+    r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+CN+'&apikey=YK7B08UYF7U2MP4L')
+    today = date.today()
+    d4 = today.strftime("%Y-%m-%d")
+    result = r.json()
+    dataForAllDays = result['Time Series (Daily)']
+    dataForSingleDate = dataForAllDays[d4]
+    return dataForSingleDate['4. close']
+
+
+def Company_PEG(CN):
+    r = requests.get(
+        'https://www.alphavantage.co/query?function=OVERVIEW&symbol='+CN+'&apikey=YK7B08UYF7U2MP4L')
+    result = r.json()
+    return result['PEGRatio']
+
+
+def Assigning_PEG(List_Of_Symbols):
+    Added_List = []
+    for i in range(len(List_Of_Symbols)):
+        try:
+            Added_List.append(float(Company_PEG(List_Of_Symbols[i])))
+        except:
+            Added_List.append(0.0)
+    return Added_List
+
+
+def Find_Max_And_Index(Test_List):
+    return max(Test_List), Test_List.index(max(Test_List))
+
+def main():
+    List_Of_PEG = Assigning_PEG(symbol_list_us)
+    PEG_Max, PEG_Max_Index = Find_Max_And_Index(List_Of_PEG)
+    print(symbol_list_us[PEG_Max_Index])
+
+main()
