@@ -1,0 +1,33 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import warnings
+
+i = int(input("Range in power of two: "))
+j = np.power(2, i)
+base_list = []
+
+for count in range(2, j):
+    major_count = 0
+    while (count != 1):
+        if (count % 2 != 0):
+            count = (3 * count) + 1
+        elif (count % 2 == 0):
+            count = count / 2
+
+        major_count += 1
+    base_list.append(major_count)
+
+
+warnings.simplefilter('ignore', np.RankWarning)
+
+turns_list = np.array(base_list)
+
+xcoor = list(range(0,len(base_list)))
+plt.bar(xcoor, turns_list, width=0.8, bottom=None)
+plt.xlabel("Each Collatz Point")
+plt.ylabel("Amount of times to reach the 4-1 Loop")
+plt.title("Collatz Conjecture Proof")
+
+
+print(turns_list)
+plt.show()
