@@ -1,0 +1,19 @@
+import requests
+from bs4 import BeautifulSoup
+import random
+human_inp = input("Website to Scrape:")
+def scrapeWikiArticle(url):
+    response = requests.get(
+        url=url,
+    )
+
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    title = soup.find(id="firstHeading")
+    print(title.text)
+
+    allLinks = soup.find(id="bodyContent").find_all("a")
+    random.shuffle(allLinks)
+    return allLinks
+
+print(scrapeWikiArticle(human_inp))
