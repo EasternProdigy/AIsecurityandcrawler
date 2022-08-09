@@ -1,0 +1,299 @@
+import java.util.Scanner;
+  
+public class Main
+{
+  public static void main(String[] args)
+  {
+    String q = "";
+    Scanner keyboard = new Scanner(System.in);
+    
+    System.out.println("Chatbot test begins...");
+    System.out.println();
+    WilliamMezitis bot = new WilliamMezitis();
+    
+    System.out.println("Taking chatbot attendance...");
+    System.out.println("Are you there?");
+    System.out.println(bot.here());
+    System.out.println();
+    
+    System.out.println("Testing Random Questions...");
+    for(int i=0; i<5;i++)
+    {
+      q = bot.ask();
+      System.out.println("Your question: " + q);
+      System.out.println("Your answer: " + bot.answer(q));
+    }
+    
+    System.out.println("Testing User Questions...");
+    q="";
+    while(!q.equals("quit"))
+    {
+      System.out.print("Ask a question: ");
+      q = keyboard.nextLine();
+      System.out.println("Your answer: " + bot.answer(q));
+    }
+  }
+}
+
+import java.util.Scanner;
+import java.util.Random;
+class WilliamMezitis {
+  private String name;
+  private int age;
+  private String gps;
+  private String food;
+  private String color;
+  private String tv;
+  private String fC;
+
+  public WilliamMezitis(){
+    name = "William Mezitis";
+    age = 15;
+    gps = "Upper East Side, Manhattan";
+    food = "Chicken Cordon Bleu";
+    color = "blue";
+    tv = "Degrassi";
+    fC = "Gym";
+  }
+	public static String here()
+	{
+		return "I am here Mr.Chen";
+	}
+
+
+	public static String ask()
+	{
+		String food = "\n\nWhat is your favorite food?\n\n";
+		String sport = "\n\nHello, My name is Kate.\n\n";
+		String color = "\n\nWhat is your favorite color?\n\n";
+		String Class = "\n\nWhat class do you have in 3rd period?\n\n";
+		String TV = "\n\nWhat is your favorite TV Show?\n\n";
+		String game = "\n\nWhat is your favorite class?\n\n";
+		String drink = "\n\nWhat is your favorite TV show?\n\n";
+		String date = "\n\nwhat is your favorite sport\n\n";
+		String animal = "\n\nWhere do you live?\n\n";
+		String limpiar = "\n\nHow old are you\n\n";
+		String classless = "\n\nWhat class do you have 7th period\n\n";
+		String drogo = "\n\nWhat is your name\n\n";
+		String[] questionsR = {food,sport,color,Class,TV,game,drink,date,animal, limpiar, drogo, classless};
+		int ran = new Random().nextInt(questionsR.length);
+		return (questionsR[ran]);
+	}
+
+
+	public static String answer(String q)
+	{
+		String inputter1 = "";
+    String inputter2 = "";
+		q.toUpperCase();
+		q.trim();
+		q+=".";
+		if(q.contains("your") && q.contains("name")){
+    	return "My name is William Mezitis";
+		}
+		if(q.contains("My name is") || q.contains("my name is") || q.contains("am") || q.contains("MY NAME IS")){
+      if(q.contains("IS")){
+        String[] beer = q.split(" ");
+        for(int x = 0; x < beer.length; x++){
+          if(beer[x].equals("IS")){
+            return("Hi there " + beer[x+1] + ", I can tell you are a good person");
+          }
+        }
+      }
+		}
+		q.toLowerCase();
+		if(q.contains("My name is") || q.contains("my name is") || q.contains("am") || q.contains("MY NAME IS")){
+      if(q.contains("is")){
+        String[] arton = q.split(" ");
+        for(int x = 0; x < arton.length; x++){
+          if(arton[x].equals("is")){
+            return("Hi there " + arton[x+1] + ", I can tell you are a good person");
+          }
+        }
+      }
+		}
+		if(q.contains("am")){
+        String[] Trills = q.split(" ");
+        for(int i = 0; i < Trills.length; i++){
+          if(Trills[i].equals("am")){
+            return("Hi there " + Trills[i+1] + ", I can tell your a nice person");
+					}
+				}
+		}
+		for (int i = 4; i < q.length(); i++)
+			{
+				if(q.substring(i-4,i).equals("your"))
+				{	
+					for (int u = 8; u < q.length(); u++)
+					{
+						if (q.substring(u-8,u).equals("favorite"))
+						{
+							for (int o = 4; o < q.length(); o++)
+							{
+								if (q.substring(o-4,o).equals("food"))
+								{
+									return "My favorite food is Fasolakia, returndish originating from Greece.";
+								}
+								if (q.substring(o-4,o).equals("show"))
+								{
+									return "I have many favorite tv shows, the one I have recently liked the most would be One Piece.";
+								}
+							}
+							for (int j = 5; j < q.length(); j++)
+							{
+								if (q.substring(j-5,j).equals("color"))
+								{
+									return "My favorite color is blue, the color of the sky.";
+								}
+								if (q.substring(j-5,j).equals("sport"))
+								{
+									return "My favorite American sport is Baseball, but my favorite European sport is Handball.";
+								}
+								if (q.substring(j-5,j).equals("class"))
+								{
+									String ena = "English.";
+									String thio = "Physical Education.";
+									String tria = "Honors Chemistry.";
+									String tesera = "Coding For All.";
+									String pente = "AP Computer Science A.";
+									String exi = "AP World History.";
+									String efta = "Spanish Level 3.";
+									String octo = "Honors Precalculus.";
+									String[] classes = {ena,thio,tria,tesera,pente,exi,efta,octo};
+									int ron = new Random().nextInt(classes.length);
+									return "My favorite class is " + classes[ron] + " returntruly interesting class.";
+								}
+							}
+							for (int h = 2; h < q.length(); h++)
+							{
+								if (q.substring(h-2,h).equals("tv") || q.substring(h-2,h).equals("TV"))
+								{
+									return "My favorite would have to be Invincible.";
+								}
+							}
+							for (int g = 7; g < q.length(); g++)
+							{
+								if (q.substring(g-7,g).equals("tv show"))
+								{
+									return "I love so many but I would say my favorite is the Office.";
+								}
+							}
+						}
+					}
+				}
+			}
+		for (int c = 3; c < q.length(); c++)
+		{
+			if (q.substring(c-3,c).equals("you"))
+			{
+				for (int g = 4; g < q.length(); g++)
+				{
+					if (q.substring(g-4,g).equals("live"))
+					{
+						return "I live in Upper East Side Manhattan.";
+					}
+				}
+				for (int k = 3; k < q.length(); k++)
+				{
+					if (q.substring(k-3,k).equals("old"))
+					{
+						return "I am 15 years old. My birthday is October 17.";
+					}
+					if (q.substring(k-3,k).equals("age"))
+					{
+						return "I am 15 years old. My birthday is October 17.";
+					}
+				}
+				for (int d = 5; d < q.length(); d++)
+				{
+					if (q.substring(d-5,d).equals("class"))
+					{
+						for (int l = 1; l < q.length(); l++)
+						{
+							if (q.substring(l-1,l).equals("1"))
+							{
+								return "I have English 10 first period.";
+							}
+							else if (q.substring(l-1,l).equals("2"))
+							{
+								return "I have Physical Education second period.";
+							}
+							else if (q.substring(l-1,l).equals("3"))
+							{
+								return "I have Honors Chemistry third period.";
+							}
+							else if (q.substring(l-1,l).equals("4"))
+							{
+								return "I have Coding For All fourth period.";
+							}
+							else if (q.substring(l-1,l).equals("5"))
+							{
+								return "I have lunch fifth period.";
+							}
+							else if (q.substring(l-1,l).equals("6"))
+							{
+								return "I have AP Computer Science sixth period.";
+							}
+							else if (q.substring(l-1,l).equals("7"))
+							{
+								return "I have AP World History seventh period.";
+							}
+							else if (q.substring(l-1,l).equals("8"))
+							{
+								return "I have Spanish level 3 eighth period.";
+							}
+							else if (q.substring(l-1,l).equals("9"))
+							{
+								return "I have Honors Precalculus ninth period.";
+							}
+						}
+						for (int z = 2; z < q.length(); z++)
+						{
+							if (q.substring(z-2,z).equals("10"))
+							{
+								return "I have SGI tenth period.";
+							}
+							else if (q.substring(z-2,z).equals("11"))
+							{
+								return "I have Robotics Team during eleventh period.";
+							}
+							else if (q.substring(z-2,z).equals("12"))
+							{
+								return "I have Robotics Team during twelvth period.";
+							}
+						}
+					}
+				}
+			}
+		}
+		q = q.replace(".","");
+		if (q.indexOf("+") > -1){
+			for(int grape = q.indexOf("+") + 1; grape < q.length(); grape++){
+        if (Character.isDigit(q.charAt(grape))){
+          inputter2 = 
+					inputter2 + String.valueOf(q.charAt(grape));
+        }
+        else if (q.charAt(grape) == '.'){
+          inputter2 = 
+					inputter2 + String.valueOf(q.charAt(grape));
+        }
+      }
+      for(int grape = q.indexOf("+") - 1; grape > 0; grape--){
+        if (Character.isDigit(q.charAt(grape))){
+          inputter1 = 
+					String.valueOf(q.charAt(grape)) + inputter1;
+        }
+        else if (q.charAt(grape) == '.'){
+          inputter1 = 
+					String.valueOf(q.charAt(grape)) + inputter1;
+        }
+      }
+			String alphaParticle = Double.toString(Double.valueOf(inputter1) + Double.valueOf(inputter2));
+      
+			
+			
+			return alphaParticle;
+    }
+	return "BEEP BOOP I DON'T KNOW IT YET.";
+	}
+}
